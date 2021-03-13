@@ -4,9 +4,15 @@ services:
     image: postgres
     environment:
       POSTGRES_PASSWORD: dev_password
+      POSTGRES_USER: postgres
+    volumes:
+      - ${PWD}/files/10-init.sql:/docker-entrypoint-initdb.d/10-init.sql
+    restart: always
   web:
     image: rwinfosec-simple-web-app:<VERSION>
     ports:
       - "3000:3000"
     environment:
       NODE_ENV: development
+
+

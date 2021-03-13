@@ -6,8 +6,8 @@ docker-build:
 	-t ${DOCKER_IMAGE}:${GIT_VERSION} \
 	-f docker/Dockerfile .
 
-runlocal:
-	sed -e 's/<VERSION>/${GIT_VERSION}/g'  docker-compose.local.yml | docker-compose --project-name simple-web-app -f /dev/stdin up -d
+run-local:
+	sed -e 's/<VERSION>/${GIT_VERSION}/g' docker-compose.local.yml | docker-compose --project-name simple-web-app -f /dev/stdin up -d
 
-stoplocal:
-	docker-compose --project-name simple-web-app stop
+stop-local:
+	docker-compose --project-name simple-web-app down --volumes
