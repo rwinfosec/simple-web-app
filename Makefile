@@ -1,4 +1,4 @@
-DOCKER_IMAGE := rwinfosec-simple-web-app
+DOCKER_IMAGE := rwinfosec/simple-web-app
 GIT_VERSION := $(shell git rev-parse HEAD)
 
 docker-build:
@@ -12,6 +12,3 @@ run-local:
 
 stop-local:
 	docker-compose --project-name simple-web-app down --volumes
-
-run-production:
-    docker-compose --project-name simple-web-app -f /dev/stdin up -d
