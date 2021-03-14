@@ -9,10 +9,21 @@ services:
       - ${PWD}/files/10-init.sql:/docker-entrypoint-initdb.d/10-init.sql
     restart: always
   web:
+    depends_on:
+      - db
     image: rwinfosec-simple-web-app:<VERSION>
     ports:
       - "3000:3000"
     environment:
       NODE_ENV: development
+      DB_USER: postgres
+      DB_PASS: dev_password
+      DB_HOST: db
+      DB: injection
 
-
+  nginx:
+    depends_on:
+      - web
+    image: rwinfosec/modsecurity-nginx
+    ports:
+      - "80:80"
