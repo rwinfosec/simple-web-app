@@ -11,7 +11,7 @@ services:
   web:
     depends_on:
       - db
-    image: rwinfosec-simple-web-app:<VERSION>
+    image: rwinfosec/simple-web-app:<VERSION>
     ports:
       - "3000:3000"
     environment:
